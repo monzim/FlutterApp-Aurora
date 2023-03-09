@@ -7,13 +7,12 @@ part of 'color_scheme_seed_provider.dart';
 // **************************************************************************
 
 String _$appColorSchemeSeedHash() =>
-    r'b70aeb99c5ffc5fc0620c9e9a445e6ec31a9ee9c';
+    r'98a777c4a0bd5428de45af6919b8d34dd8d3cbaf';
 
-/// See also [AppColorSchemeSeed].
-@ProviderFor(AppColorSchemeSeed)
-final appColorSchemeSeedProvider =
-    AutoDisposeNotifierProvider<AppColorSchemeSeed, Color>.internal(
-  AppColorSchemeSeed.new,
+/// See also [appColorSchemeSeed].
+@ProviderFor(appColorSchemeSeed)
+final appColorSchemeSeedProvider = AutoDisposeProvider<Color?>.internal(
+  appColorSchemeSeed,
   name: r'appColorSchemeSeedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
@@ -22,5 +21,5 @@ final appColorSchemeSeedProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$AppColorSchemeSeed = AutoDisposeNotifier<Color>;
+typedef AppColorSchemeSeedRef = AutoDisposeProviderRef<Color?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

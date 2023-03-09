@@ -7,13 +7,12 @@ part of 'localization_provider.dart';
 // **************************************************************************
 
 String _$appLocalizationServiceHash() =>
-    r'b46aa2680c191c0b3c37e46c7d591407a90a2e6e';
+    r'6b4ab6754892bfb387c04f1d951819fa7f444ec8';
 
-/// See also [AppLocalizationService].
-@ProviderFor(AppLocalizationService)
-final appLocalizationServiceProvider =
-    AutoDisposeNotifierProvider<AppLocalizationService, Locale>.internal(
-  AppLocalizationService.new,
+/// See also [appLocalizationService].
+@ProviderFor(appLocalizationService)
+final appLocalizationServiceProvider = AutoDisposeProvider<Locale?>.internal(
+  appLocalizationService,
   name: r'appLocalizationServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
@@ -22,5 +21,5 @@ final appLocalizationServiceProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$AppLocalizationService = AutoDisposeNotifier<Locale>;
+typedef AppLocalizationServiceRef = AutoDisposeProviderRef<Locale?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

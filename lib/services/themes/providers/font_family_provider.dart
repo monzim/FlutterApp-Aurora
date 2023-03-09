@@ -1,7 +1,8 @@
+import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'font_provider.g.dart';
+part 'font_family_provider.g.dart';
 
 class AppFonts {
   static List<String?> list = [
@@ -22,17 +23,8 @@ class AppFonts {
 }
 
 @riverpod
-class AppFontService extends _$AppFontService {
-  @override
-  String? build() {
-    return GoogleFonts.ibmPlexSans().fontFamily;
-  }
-
-  void setFontFamily(String? fontFamily) {
-    state = fontFamily;
-  }
-
-  void setUbuntuFontFamily() {
-    setFontFamily(GoogleFonts.ubuntu().fontFamily);
-  }
+String? appFontService(AppFontServiceRef ref) {
+  final appSettings =
+      ref.watch(appSettingsProvider.select((data) => data.value?.fontFamily));
+  return appSettings;
 }

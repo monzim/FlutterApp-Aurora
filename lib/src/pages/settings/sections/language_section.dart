@@ -1,3 +1,4 @@
+import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
 
 import '/src/global/global.dart';
@@ -15,10 +16,15 @@ class LanguageSettingSection extends ConsumerWidget {
       leading: const Icon(Icons.language),
       trailing: DropdownButton<Locale>(
         value: locale,
+        underline: const SizedBox.shrink(),
         onChanged: (value) {
-          ref
-              .read(appLocalizationServiceProvider.notifier)
-              .setLocale(value ?? AppLocales.bnBD);
+          // ref
+          //     .read(appLocalizationServiceProvider.notifier)
+          //     .setLocale(value ?? AppLocales.bnBD);
+
+          ref.read(appSettingsProvider.notifier).updateLanguage(
+                value?.languageCode == 'en' ? 'en' : 'bn',
+              );
         },
         items: [
           DropdownMenuItem(

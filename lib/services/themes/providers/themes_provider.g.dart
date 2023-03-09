@@ -6,7 +6,7 @@ part of 'themes_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$isDarkModeHash() => r'16ac49c3c2adcab121d0609826f4952630bc7654';
+String _$isDarkModeHash() => r'7d5400bdcc3df2690e1c556b15edee552f95b8cf';
 
 /// See also [isDarkMode].
 @ProviderFor(isDarkMode)
@@ -20,7 +20,7 @@ final isDarkModeProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef IsDarkModeRef = AutoDisposeProviderRef<bool>;
-String _$themeIconHash() => r'b3f3e57002a201c2d642207c69966d6fd11cbb8b';
+String _$themeIconHash() => r'619f1b1e0a1af383739840e31ae7e758592639a9';
 
 /// See also [themeIcon].
 @ProviderFor(themeIcon)

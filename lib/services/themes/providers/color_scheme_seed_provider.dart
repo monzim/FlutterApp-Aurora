@@ -1,20 +1,18 @@
-import 'package:flutter/material.dart' show Color, Colors;
+import '/services/app_preference/providers/app_settings_provider.dart';
+import 'package:flutter/material.dart' show Color;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 part 'color_scheme_seed_provider.g.dart';
 
+extension HexToColor on String {
+  Color hexToColor() {
+    return Color(int.parse(replaceFirst('#', '0xFF')));
+  }
+}
+
 @riverpod
-class AppColorSchemeSeed extends _$AppColorSchemeSeed {
-  @override
-  Color build() {
-    return Colors.indigo;
-  }
+Color? appColorSchemeSeed(AppColorSchemeSeedRef ref) {
+  final color = ref
+      .watch(appSettingsProvider.select((data) => data.value?.colorSchemeSeed));
 
-  void changeColor(Color color) {
-    state = color;
-  }
-
-  void resetColor() {
-    state = Colors.indigo;
-  }
+  return color?.hexToColor();
 }

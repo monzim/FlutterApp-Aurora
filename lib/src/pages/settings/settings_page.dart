@@ -1,12 +1,9 @@
+import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 
 import '/src/global/global.dart';
-import '/services/localization/providers/localization_provider.dart';
-import '/services/themes/providers/color_scheme_seed_provider.dart';
-import '/services/themes/providers/theme_mode_provider.dart';
 import '/services/themes/providers/themes_provider.dart';
-import '/services/themes/providers/font_provider.dart';
 
 import 'providers/settings_provider.dart';
 import 'widgets/theme_toggle_widget.dart';
@@ -29,12 +26,11 @@ class SettingsPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          ref.invalidate(appFontServiceProvider);
-          ref.invalidate(appColorSchemeSeedProvider);
-          ref.invalidate(themeModeServiceProvider);
-          ref.invalidate(appLocalizationServiceProvider);
+          ref.read(appSettingsProvider.notifier).reset();
         },
-        icon: const Icon(Icons.refresh),
+        icon: const Icon(
+          Icons.refresh,
+        ),
         label: Text(context.l10n.reset),
       ),
       body: Center(
@@ -52,8 +48,6 @@ class SettingsPage extends ConsumerWidget {
             const LanguageSettingSection(),
             const FontSettingSection(),
             const AppColorSection()
-
-            // Other settings
           ],
         ),
       ),

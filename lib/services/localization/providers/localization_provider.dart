@@ -1,29 +1,34 @@
+import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'localization_provider.g.dart';
 
-abstract class AppLocales {
+class AppLocales {
   static const enUS = Locale('en', 'US');
   static const bnBD = Locale('bn', 'BD');
+
+  List<Locale> get supportedLocales => [enUS, bnBD];
+  Locale get defaultLocale => enUS;
+
+  static Locale getLocale(String language) {
+    switch (language) {
+      case 'en':
+        return enUS;
+      case 'bn':
+        return bnBD;
+      default:
+        return enUS;
+    }
+  }
 }
 
 @riverpod
-class AppLocalizationService extends _$AppLocalizationService {
-  @override
-  Locale build() {
-    return AppLocales.enUS;
-  }
+Locale? appLocalizationService(AppLocalizationServiceRef ref) {
+  final appSettings = ref.watch(appSettingsProvider);
 
-  void setLocale(Locale locale) {
-    state = locale;
-  }
+  final k =
+      appSettings.whenData((value) => AppLocales.getLocale(value.language));
 
-  void setLocaleToEnUS() {
-    state = AppLocales.enUS;
-  }
-
-  void setLocaleToBnBD() {
-    state = AppLocales.bnBD;
-  }
+  return k.value;
 }

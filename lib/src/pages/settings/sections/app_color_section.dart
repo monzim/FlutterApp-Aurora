@@ -1,3 +1,4 @@
+import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
 import '/services/themes/providers/color_scheme_seed_provider.dart';
 import '/src/global/global.dart';
@@ -14,25 +15,25 @@ class AppColorSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Color> colors = [
-      Colors.red,
-      Colors.pink,
-      Colors.purple,
-      Colors.deepPurple,
-      Colors.indigo,
-      Colors.blue,
-      Colors.lightBlue,
-      Colors.cyan,
-      Colors.teal,
-      Colors.green,
-      Colors.lightGreen,
-      Colors.lime,
-      Colors.yellow,
-      Colors.amber,
-      Colors.orange,
-      Colors.deepOrange,
-      Colors.brown,
-      Colors.grey,
-      Colors.blueGrey,
+      Colors.red.toHex().hexToColor(),
+      Colors.pink.toHex().hexToColor(),
+      Colors.purple.toHex().hexToColor(),
+      Colors.deepPurple.toHex().hexToColor(),
+      Colors.indigo.toHex().hexToColor(),
+      Colors.blue.toHex().hexToColor(),
+      Colors.lightBlue.toHex().hexToColor(),
+      Colors.cyan.toHex().hexToColor(),
+      Colors.teal.toHex().hexToColor(),
+      Colors.green.toHex().hexToColor(),
+      Colors.lightGreen.toHex().hexToColor(),
+      Colors.lime.toHex().hexToColor(),
+      Colors.yellow.toHex().hexToColor(),
+      Colors.amber.toHex().hexToColor(),
+      Colors.orange.toHex().hexToColor(),
+      Colors.deepOrange.toHex().hexToColor(),
+      Colors.brown.toHex().hexToColor(),
+      Colors.grey.toHex().hexToColor(),
+      Colors.blueGrey.toHex().hexToColor(),
     ];
 
     final colorSchemeSeed = ref.watch(appColorSchemeSeedProvider);
@@ -44,9 +45,10 @@ class AppColorSection extends ConsumerWidget {
         value: colorSchemeSeed,
         onChanged: (color) {
           if (color != null) {
-            ref.read(appColorSchemeSeedProvider.notifier).changeColor(color);
+            ref.read(appSettingsProvider.notifier).updateColorSchemeSeed(color);
           }
         },
+        underline: const SizedBox.shrink(),
         items: colors
             .map(
               (color) => DropdownMenuItem<Color>(

@@ -1,7 +1,8 @@
+import '/services/app_preference/providers/app_settings_provider.dart';
+import '/services/themes/providers/font_family_provider.dart';
 import 'package:flutter/material.dart';
 
 import '/src/global/global.dart';
-import '/services/themes/providers/font_provider.dart';
 
 class FontSettingSection extends ConsumerWidget {
   const FontSettingSection({super.key});
@@ -15,9 +16,10 @@ class FontSettingSection extends ConsumerWidget {
       leading: const Icon(Icons.font_download),
       trailing: DropdownButton<String>(
           value: font,
+          underline: const SizedBox.shrink(),
           alignment: Alignment.center,
           onChanged: (value) {
-            ref.read(appFontServiceProvider.notifier).setFontFamily(value);
+            ref.read(appSettingsProvider.notifier).updateFontFamily(value);
           },
           items: AppFonts.list
               .map(

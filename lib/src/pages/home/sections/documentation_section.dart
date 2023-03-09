@@ -10,7 +10,7 @@ class DocumentationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final contactUri = Uri.parse('https://monzim.com/contact');
     final brickUri = Uri.parse('https://github.com/monzim/mason_bricks');
-    final templateUri = Uri.parse('https://github.com/monzim/mason_bricks');
+    final sourceUri = Uri.parse('https://github.com/monzim/FlutterApp-Aurora');
 
     Future<void> launchMe(Uri uri) async {
       try {
@@ -77,23 +77,24 @@ class DocumentationSection extends StatelessWidget {
                       },
                   ),
                   TextSpan(text: context.l10n.midDescription),
-                  const TextSpan(
-                    text: '\nDocumentation here: ',
-                    style: TextStyle(),
-                  ),
                   TextSpan(
-                    text: 'GitHub',
+                    text: '\nDocumentation',
                     style: TextStyle(
                         color:
                             Theme.of(context).buttonTheme.colorScheme?.primary),
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => launchMe(templateUri),
+                      ..onTap = () => launchMe(sourceUri),
                   ),
                   TextSpan(
-                    text: '\n\n${context.l10n.endDescription}: ',
+                    text: '\nSource Code',
+                    style: TextStyle(
+                        color:
+                            Theme.of(context).buttonTheme.colorScheme?.primary),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => launchMe(brickUri),
                   ),
                   TextSpan(
-                    text: '\n${context.l10n.contactMe}',
+                    text: '\n\n${context.l10n.contactMe}',
                     style: TextStyle(
                         color:
                             Theme.of(context).buttonTheme.colorScheme?.primary),
@@ -111,7 +112,7 @@ class DocumentationSection extends StatelessWidget {
                                   .colorScheme
                                   ?.primary),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => launchMe(brickUri),
+                            ..onTap = () => launchMe(sourceUri),
                         ),
                         const TextSpan(
                           text: '.',

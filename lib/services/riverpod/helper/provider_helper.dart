@@ -1,39 +1,75 @@
-import 'package:flutter/foundation.dart' show debugPrint;
+import 'dart:developer' show log;
 
 class ProviderHelper {
   static onInit(String name, String hash) {
-    debugPrint('🚀 $name initialized with hash: ${hash.toUpperCase()}');
+    log(
+      '🚀 $name initialized with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 
   static onCancel(String name, String hash) {
-    debugPrint('🛑 $name canceled with hash: ${hash.toUpperCase()}');
+    log(
+      '🛑 $name canceled with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper: $hash',
+      time: DateTime.now(),
+    );
   }
 
   static onDispose(String name, String hash) {
-    debugPrint('🗑️ $name disposed with hash: ${hash.toUpperCase()}');
+    log(
+      '🚮 $name disposed with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 
   static onRebuild(String name, String hash) {
-    debugPrint('🔁 $name rebuilt with hash: ${hash.toUpperCase()}');
+    log(
+      '🔁 $name rebuilt with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 
   static onRead(String name, String hash) {
-    debugPrint('👁️ $name read with hash: ${hash.toUpperCase()}');
+    log(
+      '👁️ $name read with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 
   static onProvider(String name, String hash) {
-    debugPrint('📦 $name provider with hash: ${hash.toUpperCase()}');
+    log(
+      '📦 $name provider with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 
   static onWatch(String name, String hash) {
-    debugPrint('👀 $name provider watched with hash: ${hash.toUpperCase()}');
+    log(
+      '👀 $name provider watched with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 
   static onAddListener(String name, String hash) {
-    debugPrint('👂 $name add listener with hash: ${hash.toUpperCase()}');
+    log(
+      '👂 $name add listener with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 
   static onRemoveListener(String name, String hash) {
-    debugPrint('🔇 $name remove listener with hash: ${hash.toUpperCase()}');
+    log(
+      '🔇 $name remove listener with hash: ${hash.toUpperCase()}',
+      name: 'ProviderHelper',
+      time: DateTime.now(),
+    );
   }
 }

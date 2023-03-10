@@ -1,0 +1,15 @@
+{
+  "index": "Introduction",
+  "getting-started": "Getting Started",
+  "architecture": "Architecture",
+  "about": {
+    "title": "About",
+    "type": "page"
+  },
+  "contact": {
+    "title": "Contact ↗",
+    "type": "page",
+    "href": "https://monzim.com/contact",
+    "newWindow": true
+  }
+}

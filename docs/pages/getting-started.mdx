@@ -1,0 +1,38 @@
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="warning" emoji="⚠️">
+  This is under development, so it's not ready for use yet.
+</Callout>
+
+# Getting Started
+
+Before you implement the architecture, you need to install **_mason_**. Cause it's the tool that will help you to generate the architecture files and folders.
+
+### 🧑‍💻 Installing Mason CLI
+
+You can install **_mason_** by running the following command:
+
+```bash
+# 🎯 Activate from https://pub.dev
+dart pub global activate mason_cli
+```
+
+See more about **_mason_** [here](https://docs.brickhub.dev/).
+
+## 🧱 Installing Aurora Brick
+
+You can install **_Aurora Brick_** by running the following command:
+
+```bash
+# 🌐 Install globally
+mason add -g app
+```
+
+## 📦 Initializing Aurora
+
+Now create a new flutter project then navigate to the project directory and initialize the architecture by running the following command:
+
+```bash
+# Initialize the architecture
+mason make app
+```

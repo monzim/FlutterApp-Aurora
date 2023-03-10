@@ -1,0 +1,59 @@
+# Structure
+
+Aurora start from the `lib` folder. The `lib` folder contains the following folders and files:
+
+- `main.dart` is the main file of the application. It contains the `main` function that is the entry point of the flutter application.
+
+- `src` folder contains the source code of application that related to build the UI and the business logic of the application.
+
+- `services` folder contains the source code of application that related to the services of the application in root Domain layer.
+
+```bash
+lib
+├── main.dart
+├── src
+├── services
+```
+
+## main.dart
+
+The `main.dart` is the main file of the application. It contains the `main` function that is the entry point of the flutter application.
+
+## services
+
+The `services` folder contains the source code of application that related to the services of the application in root Domain layer. It is the place where we can put the services that are used in the application at the root Domain layer.
+
+Every service have its own folder. The folder name is the name of the service. The folder contains the files that related to the service.
+
+```bash
+services
+├── service_name
+│   ├── contants
+│   ├── extention
+│   ├── models
+│   ├── helpers
+│   ├── providers
+```
+
+For more information about the services, please refer to [Services]()
+
+## src
+
+The `src` folder contains the source code of application that related to build the UI and the business logic of the application. It is the place where we can put the source code of the application.
+
+It contains the following folders:
+
+- `global` folder contains the source code of application that related to the global level of the application.
+
+- `pages` folder contains the source code of application that related to the pages of the application. Mainly, it contains the source code of the application's UI.
+
+- `services` folder contains the source code of application that related to the services of the application.
+
+```bash
+src
+├── global
+├── pages
+├── services
+```
+
+For more information about the services, please refer to [src]()

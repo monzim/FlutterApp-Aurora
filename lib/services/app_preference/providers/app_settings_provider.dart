@@ -1,11 +1,11 @@
-import 'dart:ui';
+import 'dart:ui' show Color;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '/services/riverpod/riverpod.dart';
 import '/services/app_preference/models/app_preference.dart';
-
 import '/services/local_storage/isar/constants/isar_constants.dart';
 import '/services/local_storage/isar/providers/isar_provider.dart';
 import '/services/themes/extention/color_extention.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_settings_provider.g.dart';
 
@@ -13,6 +13,7 @@ part 'app_settings_provider.g.dart';
 class AppSettings extends _$AppSettings {
   @override
   Future<AppPreferences> build() async {
+    ProviderHelper.onInit('AppSettings', ref.formatHash);
     final appPreferences = await _getData();
     return appPreferences;
   }
@@ -73,6 +74,7 @@ class AppSettings extends _$AppSettings {
   }
 
   void _update(AppPreferences? appPreferences) {
+    ProviderHelper.onUpdate('AppSettings', ref.formatHash);
     if (appPreferences != null) {
       _savePreferences(appPreferences);
       state = AsyncValue.data(appPreferences);

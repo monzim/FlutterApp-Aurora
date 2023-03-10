@@ -12,27 +12,26 @@ import 'services/app_preference/providers/app_settings_provider.dart';
 import '/src/pages/splash/splash_scree.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const ProviderScope(
-      child: LoadBalance(),
+      child: Initializer(),
     ),
   );
 }
 
-class LoadBalance extends ConsumerWidget {
-  const LoadBalance({super.key});
+class Initializer extends ConsumerWidget {
+  const Initializer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appSetting = ref.watch(appSettingsProvider);
 
     return appSetting.when(
-      data: (value) {
-        return const AuroraApp();
-      },
+      data: (value) => const AuroraApp(),
       loading: () => const SplashScreen(),
       error: (error, stack) => const Center(
-        child: Text('Something went wrong'),
+        child: Text('Something went wrong. Please try again later.'),
       ),
     );
   }

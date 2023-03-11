@@ -1,6 +1,8 @@
-import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart' show Color;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '/services/app_preference/providers/app_settings_provider.dart';
+
 part 'color_scheme_seed_provider.g.dart';
 
 extension HexToColor on String {

@@ -1,9 +1,9 @@
-import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 
 import '/src/global/global.dart';
 import '/services/themes/providers/themes_provider.dart';
+import '/services/app_preference/providers/app_settings_provider.dart';
 
 import 'providers/settings_provider.dart';
 import 'widgets/theme_toggle_widget.dart';

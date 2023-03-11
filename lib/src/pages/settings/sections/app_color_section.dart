@@ -1,7 +1,8 @@
-import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
-import '/services/themes/providers/color_scheme_seed_provider.dart';
+
 import '/src/global/global.dart';
+import '/services/themes/providers/color_scheme_seed_provider.dart';
+import '/services/app_preference/providers/app_settings_provider.dart';
 
 extension ColorToHex on Color {
   String toHex() {

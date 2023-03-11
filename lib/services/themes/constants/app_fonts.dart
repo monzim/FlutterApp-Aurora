@@ -1,5 +1,5 @@
-import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 import 'package:flutter/foundation.dart' show immutable;
+import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 
 @immutable
 class AppFonts {

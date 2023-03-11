@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import '/src/pages/error/error_page.dart';
-import '/src/pages/home/home_page.dart';
-import '/src/pages/settings/settings_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter/material.dart' show BuildContext, Widget, immutable;
+
+import '/src/pages/home/home_page.dart';
+import '/src/pages/error/error_page.dart';
+import '/src/pages/settings/settings_page.dart';
 
 part 'app_router.g.dart';
 

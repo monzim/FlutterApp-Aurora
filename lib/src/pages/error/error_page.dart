@@ -10,16 +10,13 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My "Page Not Found" Page'),
+        title: const Text('"Page Not Found"'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SelectableText(
-              error.toString(),
-              textAlign: TextAlign.center,
-            ),
+            ErrorWidget(error.toString()),
             TextButton(
               onPressed: () => context.go('/'),
               child: const Text('Return to Root Page'),

@@ -1,8 +1,8 @@
-import '/services/app_preference/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
 
 import '/src/global/global.dart';
 import '/services/localization/providers/localization_provider.dart';
+import '/services/app_preference/providers/app_settings_provider.dart';
 
 class LanguageSettingSection extends ConsumerWidget {
   const LanguageSettingSection({super.key});

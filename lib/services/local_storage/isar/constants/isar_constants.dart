@@ -1,5 +1,4 @@
-import 'dart:convert';
-
+import 'dart:convert' show utf8;
 import 'package:flutter/foundation.dart' show immutable;
 
 extension ToBinarray on String {

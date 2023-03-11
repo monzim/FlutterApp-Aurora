@@ -1,7 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '/services/localization/extention/locale_extention.dart';
+import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '/services/localization/extention/locale_extention.dart';
 
 class DocumentationSection extends StatelessWidget {
   const DocumentationSection({super.key});

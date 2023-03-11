@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/material.dart' show Color, Colors, Locale, immutable;
+import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
+
 import '/services/localization/providers/localization_provider.dart';
 
 @immutable

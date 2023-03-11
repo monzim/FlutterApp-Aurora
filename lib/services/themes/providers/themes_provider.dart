@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show IconData, Icons, ThemeMode;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'theme_mode_provider.dart';

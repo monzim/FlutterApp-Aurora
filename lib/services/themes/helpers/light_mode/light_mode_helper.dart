@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show Brightness, ThemeData;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '/services/themes/providers/font_family_provider.dart';
 import '/services/themes/providers/color_scheme_seed_provider.dart';
-import '../../providers/font_family_provider.dart';
 
 part 'light_mode_helper.g.dart';
 

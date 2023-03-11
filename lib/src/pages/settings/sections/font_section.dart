@@ -1,7 +1,8 @@
-import '/services/themes/constants/app_fonts.dart';
-import '/services/app_preference/providers/app_settings_provider.dart';
-import '/services/themes/providers/font_family_provider.dart';
 import 'package:flutter/material.dart';
+
+import '/services/themes/constants/app_fonts.dart';
+import '/services/themes/providers/font_family_provider.dart';
+import '/services/app_preference/providers/app_settings_provider.dart';
 
 import '/src/global/global.dart';
 

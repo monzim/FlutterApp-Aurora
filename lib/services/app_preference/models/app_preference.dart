@@ -1,7 +1,7 @@
-import '/services/app_preference/contants/app_default_setting.dart';
-import '/services/themes/extention/color_extention.dart';
 import 'package:isar/isar.dart';
 
+import '/services/themes/extention/color_extention.dart';
+import '/services/app_preference/contants/app_default_setting.dart';
 import '/services/local_storage/isar/constants/isar_constants.dart';
 
 part 'app_preference.g.dart';

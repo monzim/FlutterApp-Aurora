@@ -1,20 +1,40 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
+import { useRouter } from "next/router";
+import { useConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-  // logo: <span>Aurora Monzim</span>,
   logo: (
-    <>
-      <span style={{ marginLeft: ".4em", fontWeight: 800 }}>Aurora Monzim</span>
-    </>
+    // Add a bold text
+    <span>
+      <span style={{ fontWeight: 600 }}>Aurora Monzim</span>
+    </span>
   ),
-  head: (
-    <>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta property="og:title" content="Nextra" />
-      <meta property="og:description" content="The next site builder" />
-    </>
-  ),
+
+  head: () => {
+    const { asPath, defaultLocale, locale } = useRouter();
+    const { frontMatter } = useConfig();
+    const url =
+      "https://docs.aurora.monzim.com" +
+      (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
+
+    return (
+      <>
+        <meta property="og:url" content={url} />
+        <meta
+          property="og:title"
+          content={frontMatter.title || "Aurora Monzim"}
+        />
+        <meta
+          property="og:description"
+          content={
+            frontMatter.description ||
+            "Flutter project architecture that is easy to use and maintain"
+          }
+        />
+      </>
+    );
+  },
 
   project: {
     link: "https://github.com/monzim/FlutterApp-Aurora",
@@ -31,9 +51,35 @@ const config: DocsThemeConfig = {
     ),
   },
   docsRepositoryBase: "https://github.com/monzim/FlutterApp-Aurora",
+  // footer: {
+  //   text: "Docs © 2023 Aurora Monzim",
+  // },
   footer: {
-    text: "Docs © 2023 Aurora Monzim",
+    text: (
+      <span>
+        MIT {new Date().getFullYear()} ©{" "}
+        <a href="https://nextra.site" target="_blank">
+          Azraf Al Monzim
+        </a>
+        .
+      </span>
+    ),
+  },
+  banner: {
+    key: "2.0-release",
+    text: (
+      <a target="_blank">
+        ⛔️ Aurora is currently under development. Stay tuned for more
+      </a>
+    ),
   },
 };
 
-export default config;
+export default {
+  ...config,
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s – Aurora Monzim",
+    };
+  },
+};

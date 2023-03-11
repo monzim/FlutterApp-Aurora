@@ -1,0 +1,40 @@
+{
+  "appTitle": "ফ্লাটার অরোরা",
+  "@appTitle": { "description": "আবেদনের শিরোনাম" },
+  "homePageTitle": "হোমপেজ",
+  "@homePageTitle": { "description": "হোম পেজ" },
+
+  "settingsPageTitle": "সেটিংস",
+  "@settingsPageTitle": { "description": "সেটিংস পৃষ্ঠার শিরোনাম" },
+
+  "settingsPageLanguage": "ভাষা",
+  "@settingsPageLanguage": { "description": "ভাষা সেটিং এর শিরোনাম" },
+
+  "themeSetting": "থিম",
+  "@themeSetting": { "description": "থিম সেটিং এর শিরোনাম" },
+
+  "bangla": "বাংলা",
+  "@bangla": { "description": "বাংলা ভাষা এর শিরোনাম" },
+  "english": "English",
+  "@english": { "description": "ইংরেজি ভাষা এর শিরোনাম" },
+
+  "switchLanguage": "ভাষা পরিবর্তন করুন",
+  "@SwitchLanguage": { "description": "ভাষা পরিবর্তন করুন বাটনের শিরোনাম" },
+  "switchTheme": "থিম পরিবর্তন করুন",
+  "@SwitchTheme": { "description": "থিম পরিবর্তন করুন বাটনের শিরোনাম" },
+  "changeFont": "ফন্ট পরিবর্তন করুন",
+  "@ChangeFont": { "description": "ফন্ট পরিবর্তন করুন বাটনের শিরোনাম" },
+  "changeColor": "রং পরিবর্তন করুন",
+  "@ChangeColor": { "description": "রং পরিবর্তন করুন বাটনের শিরোনাম" },
+  "reset": "রিসেট",
+  "@Reset": { "description": "রিসেট বাটনের শিরোনাম" },
+  "heyThere": "হ্যালো!",
+  "iAmAzrafAlMonzim": "আমি আজরাফ আল মনজিম",
+  "templateShortDescription": "এটি আমার ফ্লাটার প্রজেক্টের জন্য একটি শুরুতের টেমপ্লেট। এটি রিভারপোড ব্যবহার করে স্টেট ম্যানেজমেন্ট করে এবং রাউটিং এর জন্য GoRouter ব্যবহার করে। এছাড়াও এটি নিম্নলিখিত ব্যবহার করে",
+  "midDescription": "\n\nএই আর্কিটেকচার বিভিন্ন design patterns এবং architectural styles যেমন provider pattern,, মডুলার আর্কিটেকচার এবং widget composition থেকে নীতির সংমিশ্রণ অনুসরণ করে। এটি কোড জেনারেশনের উপর ব্যাপকভাবে নির্ভরশীল। এটি এমভিসি প্যাটার্ন দ্বারা অনুপ্রাণিত। \n\nএটি একটি কাজ চলছে এবং আমি ফ্লাটার এবং ডার্ট সম্পর্কে আরও জানবার সাথে সাথে এটি আপডেট করব।\n",
+  "documentationHere": "ডকুমেন্টেশন এখানে",
+  "endDescription": "আপনি আপনার নিজের projects জন্য এই টেমপ্লেটটি ব্যবহার করার জন্য স্বাধীন। যদি আপনার কোন প্রশ্ন বা পরামর্শ থাকে, তাহলে নির্দ্বিধায় আমার সাথে যোগাযোগ করুন",
+  "contactMe": "আমার সাথে যোগাযোগ করুন",
+  "startOnGithub": "আপনি যদি এই টেমপ্লেটটি পছন্দ করেন তবে দয়া করে এটিতে তারকাচিহ্নিত করুন",
+  "thankYou": "আপনাকে ধন্যবাদ!"
+}

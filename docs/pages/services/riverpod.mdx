@@ -1,0 +1,67 @@
+# Riverpod Service
+
+By default **Aurora** use the `riverpod` package for state management. But you can use any other state management package like `bloc`, `get_it` etc. This file is responsible for riverpod related services. Below is the tree structure of the `riverpod` folder.
+
+```bash
+ riverpod
+ ├── extention
+ │   └── riverpod_extention.dart
+ ├── helper
+ │   └── provider_helper.dart
+ └── riverpod.dart
+```
+
+## Extention
+
+Here is we are adding some extention to the riverpod package. Only those extension add here that are releated to the riverpod package.
+
+Some of extension example are:
+
+- `ProviderHelperExtention` - This extension is responsible for adding a `formatHash` property to the `Ref` class. This property is used to format the hash of the provider. This is used to identify the provider in the logs.
+
+```dart filename="services/riverpod/extention/riverpod_extention.dart"
+extension ProviderHelperExtention on Ref {
+  String get formatHash =>
+      '0x${runtimeType.hashCode.toRadixString(32).padLeft(8, '0')}-${hashCode.toRadixString(23)}';
+}
+```
+
+## Helper
+
+Here you can add some helper classes or methods for the riverpod package.
+This is the helper class for the riverpod package. This class is responsible for adding some helper methods to the riverpod package.
+
+Some example of helper methods are:
+
+- `ProviderHelper` - This class is responsible for adding some helper methods to the riverpod package.
+
+```dart filename="services/riverpod/helper/provider_helper.dart"
+import 'dart:developer' show log;
+
+class ProviderHelper {
+  static onInit(String name, String hash) {
+    log(
+      'initialized with hash: ${hash.toUpperCase()}',
+      name: '🚀 $name',
+      time: DateTime.now(),
+    );
+  }
+
+  static onDispose(String name, String hash) {
+    log(
+      'disposed with hash: ${hash.toUpperCase()}',
+      name: '🚮 $name',
+      time: DateTime.now(),
+    );
+  }
+}
+```
+
+## Riverpod
+
+Here I am adding the `riverpod.dart` file. This file is responsible for exporting all the files from the `extention` and `helper` folder.
+
+```dart filename="services/riverpod/riverpod.dart"
+export 'extention/riverpod_extention.dart';
+export 'helper/provider_helper.dart';
+```

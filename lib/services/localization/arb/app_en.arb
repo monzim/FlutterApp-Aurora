@@ -1,0 +1,43 @@
+{
+  "appTitle": "Flutter Aurora",
+  "@appTitle": { "description": "The title of the application" },
+  "homePageTitle": "Home Page",
+  "@homePageTitle": { "description": "The title of the home page" },
+
+  "settingsPageTitle": "Settings",
+  "@settingsPageTitle": { "description": "The title of the settings page" },
+
+  "settingsPageLanguage": "Language",
+  "@settingsPageLanguage":
+    { "description": "The title of the language setting" },
+
+  "themeSetting": "Theme",
+  "@themeSetting": { "description": "The title of the theme setting" },
+  "bangla": "বাংলা",
+  "@bangla": { "description": "The title of the bangla language" },
+
+  "english": "English",
+  "@english": { "description": "The title of the english language" },
+
+  "switchLanguage": "Switch Language",
+  "@SwitchLanguage":
+    { "description": "The title of the switch language button" },
+  "switchTheme": "Switch Theme",
+  "@SwitchTheme": { "description": "The title of the switch theme button" },
+  "changeFont": "Change Font",
+  "@ChangeFont": { "description": "The title of the change font button" },
+  "changeColor": "Change Color",
+  "@ChangeColor": { "description": "The title of the change color button" },
+  "reset": "Reset",
+  "@Reset": { "description": "The title of the reset button" },
+
+  "heyThere": "Hey there!",
+  "iAmAzrafAlMonzim": "I am Azraf Al Monzim",
+  "templateShortDescription": "This is a starter template for my Flutter projects. It uses Riverpod for state management and use GoRouter for routing. It also uses the following",
+  "midDescription": "\n\nThis architecture follows a combination of principles from various design patterns and architectural styles such as provider pattern, modular architecture, and widget composition. It is heavily dependent on Code Generation. It is also inspired by the MVC pattern. \n\nThis is a work in progress and I will be updating it as I learn more about Flutter and Dart.\n",
+  "documentationHere": "Documentation here",
+  "endDescription": "You are free to use this template for your own projects. If you have any questions or suggestions, feel free to contact me",
+  "contactMe": "Contact Me",
+  "startOnGithub": "If you like this template, please star it on",
+  "thankYou": "Thank you!"
+}

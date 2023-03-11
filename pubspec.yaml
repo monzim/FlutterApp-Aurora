@@ -1,5 +1,5 @@
 name: aurora
-description: A new Flutter project.
+description: A Structure and Architecture for default Flutter project.
 
 publish_to: "none"
 
@@ -13,12 +13,30 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  flutter_riverpod: ^2.3.0
+  riverpod_annotation: ^2.0.0
+  go_router: ^6.2.0
+  google_fonts: ^4.0.3
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  url_launcher: ^6.1.10
+  isar: ^3.0.5
+  isar_flutter_libs: ^3.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  riverpod_lint: ^1.1.2
+  custom_lint: ^0.2.12
+  build_runner: ^2.3.3
+  riverpod_generator: ^2.0.0
+  go_router_builder: ^1.1.4
+  build_verify: ^3.1.0
+  isar_generator: ^3.0.5
 
 flutter:
+  generate: true
   uses-material-design: true

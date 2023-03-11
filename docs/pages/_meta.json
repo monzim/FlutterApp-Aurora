@@ -2,6 +2,10 @@
   "index": "Introduction",
   "getting-started": "Getting Started",
   "architecture": "Architecture",
+  "---": {
+    "title": "",
+    "type": "separator"
+  },
   "about": {
     "title": "About",
     "type": "page"

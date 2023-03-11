@@ -1,0 +1,98 @@
+# main.dart
+
+This is the main file of the application. It is the entry point of the application. It is the first file that is executed when the application is run. It contains One main() function and Two StalessWidget classes.
+
+#### Main Function
+
+In the main function of the application we are calling the `runApp()` function. And we are passing the `Initializer` widget to the `runApp()` function. We are wrapping the `Initializer` widget with the `ProviderScope` widget. The `ProviderScope` widget is a part of the Riverpod package. It is used to provide the state management to the application.
+
+```dart
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    const ProviderScope(
+      child: Initializer(),
+    ),
+  );
+}
+```
+
+#### Initializer Widget
+
+This is the starting widget of the app. This is for loading the dependencies that are required before the app starts.
+When loading this will show the `SplashScreen` widget. When the data is loaded it will show the `AuroraApp` widget.
+
+import { Callout } from "nextra-theme-docs";
+
+<Callout type="info">
+  This is the best place to load your dependencies in the root of the
+  application.
+</Callout>
+
+```dart
+class Initializer extends ConsumerWidget {
+  const Initializer({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appSetting = ref.watch(appSettingsProvider);
+
+    return appSetting.when(
+      data: (value) => const AuroraApp(),
+      loading: () => const SplashScreen(),
+      error: (error, stack) => const Center(
+        child: Text('Something went wrong. Please try again later.'),
+      ),
+    );
+  }
+}
+```
+
+Here you can load your others dependencies or backend data like Firebase or any other API.
+
+By defualt we are loading the `appSettingsProvider` data from the `AppSettings` provider.
+
+```dart
+@riverpod
+class AppSettings extends _$AppSettings {
+  @override
+  Future<AppPreferences> build() async {
+    ProviderHelper.onInit('AppSettings', ref.formatHash);
+    final appPreferences = await _getData();
+    return appPreferences;
+  }
+  //other code
+}
+```
+
+#### AuroraApp Widget
+
+This is the main widget of the material desig. Here we are using the `MaterialApp` widget. Alos we are initializing the app `routerConfig`, `themes` and `localization`.
+
+<Callout type="warning">
+  It will be better if you don't load any data in this widget.
+</Callout>
+
+```dart
+class AuroraApp extends ConsumerWidget {
+  const AuroraApp({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(appThemeServiceProvider);
+    final routerConfig = ref.watch(routerProvider);
+    final locale = ref.watch(appLocalizationServiceProvider);
+
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: routerConfig,
+      themeMode: themeMode,
+      theme: ref.watch(lightThemeProvider),
+      darkTheme: ref.watch(darkThemeProvider),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale,
+    );
+  }
+}
+```

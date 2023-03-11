@@ -8,7 +8,7 @@ class AppDefaultSettings {
   static bool get isDarkMode => _isDarkMode;
   static bool get isSystemThemeMode => _isSystemThemeMode;
   static Locale get locale => _locale;
-  static String? get fontFamily => GoogleFonts.ubuntu().fontFamily;
+  static String? get fontFamily => GoogleFonts.roboto().fontFamily;
   static Color get colorSchemeSeed => _colorSchemeSeed;
 
   static const _isDarkMode = false;

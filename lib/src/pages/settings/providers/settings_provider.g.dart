@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef SettingsPageRef = AutoDisposeProviderRef<void>;
-
 /// See also [settingsPage].
 @ProviderFor(settingsPage)
 const settingsPageProvider = SettingsPageFamily();
@@ -77,10 +75,10 @@ class SettingsPageFamily extends Family<void> {
 class SettingsPageProvider extends AutoDisposeProvider<void> {
   /// See also [settingsPage].
   SettingsPageProvider({
-    this.isDebug = false,
-  }) : super.internal(
+    bool isDebug = false,
+  }) : this._internal(
           (ref) => settingsPage(
-            ref,
+            ref as SettingsPageRef,
             isDebug: isDebug,
           ),
           from: settingsPageProvider,
@@ -92,9 +90,43 @@ class SettingsPageProvider extends AutoDisposeProvider<void> {
           dependencies: SettingsPageFamily._dependencies,
           allTransitiveDependencies:
               SettingsPageFamily._allTransitiveDependencies,
+          isDebug: isDebug,
         );
 
+  SettingsPageProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.isDebug,
+  }) : super.internal();
+
   final bool isDebug;
+
+  @override
+  Override overrideWith(
+    void Function(SettingsPageRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SettingsPageProvider._internal(
+        (ref) => create(ref as SettingsPageRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        isDebug: isDebug,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<void> createElement() {
+    return _SettingsPageProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -109,4 +141,18 @@ class SettingsPageProvider extends AutoDisposeProvider<void> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin SettingsPageRef on AutoDisposeProviderRef<void> {
+  /// The parameter `isDebug` of this provider.
+  bool get isDebug;
+}
+
+class _SettingsPageProviderElement extends AutoDisposeProviderElement<void>
+    with SettingsPageRef {
+  _SettingsPageProviderElement(super.provider);
+
+  @override
+  bool get isDebug => (origin as SettingsPageProvider).isDebug;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

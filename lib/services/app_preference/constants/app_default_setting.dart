@@ -5,14 +5,9 @@ import '/services/localization/providers/localization_provider.dart';
 
 @immutable
 class AppDefaultSettings {
-  static bool get isDarkMode => _isDarkMode;
-  static bool get isSystemThemeMode => _isSystemThemeMode;
-  static Locale get locale => _locale;
-  static String? get fontFamily => GoogleFonts.roboto().fontFamily;
-  static Color get colorSchemeSeed => _colorSchemeSeed;
-
-  static const _isDarkMode = false;
-  static const _isSystemThemeMode = true;
-  static const _locale = AppLocales.enUS;
-  static const _colorSchemeSeed = Colors.indigo;
+  static const bool isDarkMode = false;
+  static const bool isSystemThemeMode = true;
+  static const Locale locale = AppLocales.enUS;
+  static String? get fontFamily => GoogleFonts.lato().fontFamily;
+  static const Color colorSchemeSeed = Colors.red;
 }

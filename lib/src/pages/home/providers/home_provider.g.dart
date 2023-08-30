@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef HomePageRef = AutoDisposeProviderRef<void>;
-
 /// See also [homePage].
 @ProviderFor(homePage)
 const homePageProvider = HomePageFamily();
@@ -77,10 +75,10 @@ class HomePageFamily extends Family<void> {
 class HomePageProvider extends AutoDisposeProvider<void> {
   /// See also [homePage].
   HomePageProvider({
-    this.isDebug = false,
-  }) : super.internal(
+    bool isDebug = false,
+  }) : this._internal(
           (ref) => homePage(
-            ref,
+            ref as HomePageRef,
             isDebug: isDebug,
           ),
           from: homePageProvider,
@@ -91,9 +89,43 @@ class HomePageProvider extends AutoDisposeProvider<void> {
                   : _$homePageHash,
           dependencies: HomePageFamily._dependencies,
           allTransitiveDependencies: HomePageFamily._allTransitiveDependencies,
+          isDebug: isDebug,
         );
 
+  HomePageProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.isDebug,
+  }) : super.internal();
+
   final bool isDebug;
+
+  @override
+  Override overrideWith(
+    void Function(HomePageRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: HomePageProvider._internal(
+        (ref) => create(ref as HomePageRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        isDebug: isDebug,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<void> createElement() {
+    return _HomePageProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -108,4 +140,18 @@ class HomePageProvider extends AutoDisposeProvider<void> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+
+mixin HomePageRef on AutoDisposeProviderRef<void> {
+  /// The parameter `isDebug` of this provider.
+  bool get isDebug;
+}
+
+class _HomePageProviderElement extends AutoDisposeProviderElement<void>
+    with HomePageRef {
+  _HomePageProviderElement(super.provider);
+
+  @override
+  bool get isDebug => (origin as HomePageProvider).isDebug;
+}
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

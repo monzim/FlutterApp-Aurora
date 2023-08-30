@@ -1,10 +1,11 @@
 import 'dart:ui' show Color;
+import 'package:aurora/services/app_preference/constants/app_default_setting.dart';
+import 'package:aurora/services/local_storage/shared_preferences/constant/shared_pref_constant.dart';
+import 'package:aurora/services/local_storage/shared_preferences/provider/shared_preferences_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '/services/riverpod/riverpod.dart';
 import '/services/app_preference/models/app_preference.dart';
-import '/services/local_storage/isar/constants/isar_constants.dart';
-import '/services/local_storage/isar/providers/isar_provider.dart';
 import '/services/themes/extention/color_extention.dart';
 
 part 'app_settings_provider.g.dart';
@@ -18,12 +19,18 @@ class AppSettings extends _$AppSettings {
     return appPreferences;
   }
 
+  /// Update the dark mode state.
+  ///
+  /// The [isDarkMode] parameter is used to update the dark mode state.
   void updateDarkMode(bool isDarkMode) {
     final appPreferences = state.value;
     appPreferences?.isDarkMode = isDarkMode;
     _update(appPreferences);
   }
 
+  // This method toggles the theme of the app, if the theme is currently
+  // dark, then it will set the theme to light, and if the theme is currently
+  // light, then it will set the theme to dark.
   void toggleSystemTheme() {
     final appPreferences = state.value;
     if (appPreferences != null) {
@@ -68,40 +75,118 @@ class AppSettings extends _$AppSettings {
     _update(appPreferences);
   }
 
+  // This function is called to reset the preferences to their default values.
   void reset() {
-    final appPreferences = AppPreferences();
+    // Get the default preferences.
+    final appPreferences = AppPreferences.defaultPref();
+    // Update the preferences.
     _update(appPreferences);
   }
 
   void _update(AppPreferences? appPreferences) {
+    // After updating the preferences, we need to set the state of the
+    // preferences to the new value. The state can be one of three values:
+    // We need to set the state to the new value in order to render the
+    // preferences.
     ProviderHelper.onUpdate('AppSettings', ref.formatHash);
+
+    // If the preferences are null, then we need to set the state to
+    // AsyncValue.error. This is because we don't want to render the
+    // preferences if they are null. We want to render the preferences
     if (appPreferences != null) {
       _savePreferences(appPreferences);
       state = AsyncValue.data(appPreferences);
     }
   }
 
+  // Get the data from the shared preferences.
   Future<AppPreferences> _getData() async {
-    // Add a delay to show the splash screen
+    late AppPreferences appPreferences;
+    final prefService = await ref.read(sharedPrefServiceProvider.future);
 
-    final isar = await ref.read(isarServiceProvider.future);
-    final appPreferences =
-        await isar?.appPreferences.get(IsarConstantsCollections.appPreferences);
+    final isFirstRun = prefService.getBool(SharedPrefConstant.FIRSTRUN) ?? true;
 
-    //! TODO: Remove this delay if you don't want to show the splash screen
-    await Future.delayed(const Duration(milliseconds: 700));
+    if (isFirstRun) {
+      prefService.setBool(SharedPrefConstant.FIRSTRUN, false);
 
-    if (appPreferences != null) {
-      return appPreferences;
+      final newAppPreferences = AppPreferences.defaultPref();
+      _savePreferences(newAppPreferences);
+
+      appPreferences = newAppPreferences;
+    } else {
+      final isDarkMode = prefService.getBool(
+              SharedPrefConstant.withPref(SharedPrefConstant.isDarkMode)) ??
+          AppDefaultSettings.isDarkMode;
+
+      final isSystemThemeMode = prefService.getBool(SharedPrefConstant.withPref(
+              SharedPrefConstant.isSystemThemeMode)) ??
+          AppDefaultSettings.isSystemThemeMode;
+
+      final fontFamily = prefService.getString(
+          SharedPrefConstant.withPref(SharedPrefConstant.fontFamily));
+
+      final language = prefService
+          .getString(SharedPrefConstant.withPref(SharedPrefConstant.language));
+
+      final colorSchemeSeed = prefService.getString(
+          SharedPrefConstant.withPref(SharedPrefConstant.colorSchemeSeed));
+
+      appPreferences = AppPreferences(
+        isDarkMode: isDarkMode,
+        isSystemThemeMode: isSystemThemeMode,
+        colorSchemeSeed: colorSchemeSeed == ''
+            ? AppDefaultSettings.colorSchemeSeed.toHex()
+            : colorSchemeSeed,
+        language:
+            language == '' ? AppDefaultSettings.locale.languageCode : language,
+        fontFamily:
+            fontFamily == '' ? AppDefaultSettings.fontFamily : fontFamily,
+      );
     }
 
-    final newAppPreferences = AppPreferences();
-    _savePreferences(newAppPreferences);
-    return newAppPreferences;
+    /*
+      !TODO: Remove this delay if you don't want to show the splash screen  when the app is opened for the first time.
+     */
+
+    await Future.delayed(const Duration(milliseconds: 700));
+
+    return appPreferences;
   }
 
-  Future<void> _savePreferences(AppPreferences preferences) async {
-    final isar = await ref.read(isarServiceProvider.future);
-    await isar?.writeTxn(() async => isar.appPreferences.put(preferences));
+  // Save the new preferences.
+  Future<void> _savePreferences(AppPreferences newPref) async {
+    final pref = await ref.read(sharedPrefServiceProvider.future);
+
+    /*
+      Check if the new preference is different from the default preference. 
+      If it is different, then save it to the shared preference.
+     */
+
+    if (newPref.isDarkMode != AppDefaultSettings.isDarkMode) {
+      pref.setBool(SharedPrefConstant.withPref(SharedPrefConstant.isDarkMode),
+          newPref.isDarkMode);
+    }
+
+    if (newPref.isSystemThemeMode != AppDefaultSettings.isSystemThemeMode) {
+      pref.setBool(
+          SharedPrefConstant.withPref(SharedPrefConstant.isSystemThemeMode),
+          newPref.isSystemThemeMode);
+    }
+
+    if (newPref.fontFamily != AppDefaultSettings.fontFamily) {
+      pref.setString(SharedPrefConstant.withPref(SharedPrefConstant.fontFamily),
+          newPref.fontFamily!);
+    }
+
+    if (newPref.language != AppDefaultSettings.locale.languageCode) {
+      pref.setString(SharedPrefConstant.withPref(SharedPrefConstant.language),
+          newPref.language);
+    }
+
+    if (newPref.colorSchemeSeed != AppDefaultSettings.colorSchemeSeed.toHex()) {
+      pref.setString(
+          SharedPrefConstant.withPref(SharedPrefConstant.colorSchemeSeed),
+          newPref.colorSchemeSeed);
+    }
   }
 }

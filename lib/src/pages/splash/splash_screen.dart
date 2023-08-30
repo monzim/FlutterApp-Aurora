@@ -8,13 +8,13 @@ class SplashScreen extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      home: const Scaffold(
           backgroundColor: Colors.black,
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 FlutterLogo(size: 100.0),
                 Padding(
                   padding: EdgeInsets.only(top: 20.0),

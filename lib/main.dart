@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:aurora/src/pages/error/error_material.dart';
 
 import 'services/routers/router_provider.dart';
 import 'services/themes/providers/theme_mode_provider.dart';
@@ -9,10 +10,11 @@ import 'services/themes/helpers/light_mode/light_mode_helper.dart';
 import 'services/localization/providers/localization_provider.dart';
 import 'services/app_preference/providers/app_settings_provider.dart';
 
-import '/src/pages/splash/splash_scree.dart';
+import 'src/pages/splash/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     const ProviderScope(
       child: Initializer(),
@@ -28,11 +30,11 @@ class Initializer extends ConsumerWidget {
     final appSetting = ref.watch(appSettingsProvider);
 
     return appSetting.when(
+      skipError: true,
+      skipLoadingOnRefresh: true,
       data: (value) => const AuroraApp(),
       loading: () => const SplashScreen(),
-      error: (error, stack) => const Center(
-        child: Text('Something went wrong. Please try again later.'),
-      ),
+      error: (error, stack) => ErrorMaterial(error: error),
     );
   }
 }
